@@ -1,0 +1,12 @@
+Java 8 and Ant 1.7 are required.
+
+Edit config/config.properties
+A GitHub account is required.
+A Twitter ConsumerKey and ConsumerSecret are required
+
+Extract ReactiveBuzz.tar.
+
+To build and run the jar run
+ReactiveBuzz-BuildRun.sh
+
+

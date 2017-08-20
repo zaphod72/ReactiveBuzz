@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="all" name="ReactiveBuzz">
+	<property name="jar" value="dist/ReactiveBuzz.jar" />
+
+	<target name="all" depends="clean,compile,jar" />
+	
+	<path id="classpath">
+        <pathelement location="temp" />
+        <pathelement location="json-simple-1.1.1.jar" />
+    </path>
+
+	<target name="clean">
+        <delete dir="temp" />
+    </target>
+
+	<target name="compile">
+		<mkdir dir="temp" />
+		<javac srcdir="src" destdir="temp" source="1.7" target="1.7" debug="true">
+			<classpath refid="classpath" />
+			<include name="**/*.java" />
+		</javac>
+	</target>
+	
+	<target name="jar">
+		<copy todir="temp">
+			<fileset dir="src">
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+		<jar jarfile="${jar}">
+			<fileset dir="temp" includes="**/*" />
+			<fileset dir="config" includes="**/*" />
+			<zipfileset src="json-simple-1.1.1.jar" />
+			<manifest>
+				<attribute name="Main-Class" value="com.darrenk.reactivebuzz.ReactiveBuzz" />
+			</manifest>
+		</jar>
+		<delete dir="temp" />
+	</target>
+</project>
